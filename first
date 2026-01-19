@@ -1,53 +1,48 @@
+package com.example.calculator;
+
 import java.util.Scanner;
 
-public class BasicCalculator {
+public class Calculator {
     public static void main(String[] args) {
-        // Stores two numbers and the operation result
+        Scanner scanner = new Scanner(System.in);
         double num1, num2, result;
-        // Take input from the user
-        Scanner sc = new Scanner(System.in);
+        char operator;
 
-        System.out.println("Enter the first number:");
-        num1 = sc.nextDouble();
+        System.out.println("Enter first number:");
+        num1 = scanner.nextDouble();
 
-        System.out.println("Enter the second number:");
-        num2 = sc.nextDouble();
+        System.out.println("Enter operator (+, -, *, /):");
+        operator = scanner.next().charAt(0);
 
-        System.out.println("Enter the operator (+, -, *, /):");
-        // Take the operator input
-        char op = sc.next().charAt(0);
+        System.out.println("Enter second number:");
+        num2 = scanner.nextDouble();
 
-        // Perform the calculation based on the operator
-        switch (op) {
+        switch (operator) {
             case '+':
                 result = num1 + num2;
+                System.out.println(num1 + " + " + num2 + " = " + result);
                 break;
             case '-':
                 result = num1 - num2;
+                System.out.println(num1 + " - " + num2 + " = " + result);
                 break;
             case '*':
                 result = num1 * num2;
+                System.out.println(num1 + " * " + num2 + " = " + result);
                 break;
             case '/':
-                // Handle division by zero
                 if (num2 == 0) {
-                    System.out.println("Error! Division by zero is not allowed.");
-                    sc.close();
-                    return; // Exit the program
+                    System.out.println("Error: Division by zero is not allowed.");
+                } else {
+                    result = num1 / num2;
+                    System.out.println(num1 + " / " + num2 + " = " + result);
                 }
-                result = num1 / num2;
                 break;
             default:
-                System.out.println("Error! Invalid operator entered.");
-                sc.close();
-                return; // Exit the program
+                System.out.println("Error: Invalid operator!");
         }
 
-        System.out.println("\nThe final result:");
-        // Print the final result
-        System.out.println(num1 + " " + op + " " + num2 + " = " + result);
-
-        // Close the scanner object
-        sc.close();
+        scanner.close();
     }
 }
+
